@@ -10,7 +10,7 @@ compilar:limpiar
 	find $(SRC_DIR) -name *.java | xargs javac -cp $(OUT_DIR):$(LIB_DIR) -d $(OUT_DIR)
 
 jar:compilar
-@echo "Manifest-Version: 1.0" > manifest.txt
+	@echo "Manifest-Version: 1.0" > manifest.txt
 	@echo "Main-Class:" $(MAIN_CLASS) >> manifest.txt
 	@echo "Class-Path: . ">> manifest.txt
 	@echo "" >> manifest.txt
@@ -22,7 +22,8 @@ limpiar:
 	rm -rf $(DOC_DIR)
 	rm -f $(JAR_FILE)
 javadoc:compilar
-	javadoc -d $(DOC_DIR) -sourcepath $(SRC_DIR) -charset UTF-8 aplicacion dominio
+	find . -type f -name "*.java" | xargs javadoc -d html -encoding utf-8 -docencoding utf-8 -charset utf-8
+
 debug: compilar
 
 	find $(SRC_DIR) -name *.java | xargs javac -g -cp $(OUT_DIR):$(LIB_DIR) -d $(OUT_DIR)

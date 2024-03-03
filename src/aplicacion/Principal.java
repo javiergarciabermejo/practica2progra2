@@ -4,12 +4,14 @@ import mates.Matematicas;
 
 public class Principal {
     public static void main(String[] args) {
-        long pasos = Long.parseLong(args[0]);
+      
+        long pasosIterativo = 1000000;
+        double piIterativo = Matematicas.generarNumeroPiIterativo(pasosIterativo);
+        System.out.println("Estimación de Pi (Iterativo): " + piIterativo);
 
-        double piIterativo = Matematicas.generarNumeroPiIterativo(pasos);
-        double piRecursivo = Matematicas.generarNumeroPiRecursivo(pasos);
-
-        System.out.println("Aproximación al número PI (Iterativo): " + piIterativo);
-        System.out.println("Aproximación al número PI (Recursivo): " + piRecursivo);
+      
+        long pasosRecursivo = 1000000;
+        double piRecursivo = Matematicas.generarNumeroPiRecursivo(pasosRecursivo);
+        System.out.println("Estimación de Pi (Recursivo): " + piRecursivo);
     }
 }
