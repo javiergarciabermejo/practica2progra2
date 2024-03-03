@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Matematicas {
 
+    private static Random rand = new Random();
+
     public static double generarNumeroPiIterativo(long pasos) {
         long puntosDentroCirculo = 0;
-
-        Random rand = new Random();
 
         for (long i = 0; i < pasos; i++) {
             double x = rand.nextDouble();
@@ -24,15 +24,17 @@ public class Matematicas {
     }
 
     public static double generarNumeroPiRecursivo(long pasos) {
+        if (pasos < 0) {
+            throw new IllegalArgumentException("El número de pasos no puede ser negativo.");
+        }
+
         return generarNumeroPiRecursivoAux(pasos, 0, 0);
     }
 
     private static double generarNumeroPiRecursivoAux(long pasos, long puntosDentroCirculo, long totalPuntos) {
         if (pasos == 0) {
-            return 4.0 * puntosDentroCirculo / totalPuntos;
+            return (totalPuntos > 0) ? 4.0 * puntosDentroCirculo / totalPuntos : 0.0;
         }
-
-        Random rand = new Random();
 
         double x = rand.nextDouble();
         double y = rand.nextDouble();
